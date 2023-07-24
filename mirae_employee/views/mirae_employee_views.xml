@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_employee_form" model="ir.ui.view">
+        <field name="name">mirae_employee.employee.form</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml"> 
+            <field name="mobile_phone" position="before">
+                <field name="employee_number"/>
+            </field>
+            <field name="coach_id" position="after">
+                <field name="staff"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_employee_tree" model="ir.ui.view">
+        <field name="name">mirae_employee.employee.tree</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="employee_number"/>
+            </xpath>            
+        </field>
+    </record>
+
+    <record id="hr_kanban_view_employees" model="ir.ui.view">
+        <field name="name">mirae_employee.employee.kanban</field>
+        <field name="model">hr.employee</field>        
+        <field name="inherit_id" ref="hr.hr_kanban_view_employees"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="before">                
+                <field name="employee_number"/>
+                <br/>
+            </xpath>               
+        </field>
+    </record>
+
+    <record id="view_employee_filter" model="ir.ui.view">
+        <field name="name">mirae_employee.employee.search</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_filter"/>
+        <field name="arch" type="xml">
+            <search string="Employees">
+                <field name="employee_number"/>
+                <separator/>
+                <field name='message_needaction' position="after">
+                    <filter name="staff" string="Is Staff" domain="[('staff', '=', True)]"/>
+                    <filter name="staff" string="Not Staff" domain="[('staff', '=', False)]"/>
+                </field>
+            </search>                
+        </field>
+    </record>
+</odoo>
