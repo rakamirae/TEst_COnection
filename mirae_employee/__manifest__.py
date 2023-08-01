@@ -13,7 +13,7 @@
     'depends': [ 'base', 'hr',],
     'data': [
         # 'security/ir.model.access.csv', 
-        'views/mirae_employee_views.xml',
+        'views/mirae_employee_view.xml',
     ],    
     'installable': True,
     'application': False,
